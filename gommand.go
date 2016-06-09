@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"os/signal"
+	"strings"
 
 	"golang.org/x/tools/imports"
 )
@@ -73,7 +74,8 @@ func main() {
 	if len(os.Args) < 2 {
 		usage()
 	}
-	code := os.Args[1]
+	code := strings.Join(os.Args[1:], " ")
+	code = strings.TrimSpace(code)
 	if code == "" {
 		usage()
 	}
